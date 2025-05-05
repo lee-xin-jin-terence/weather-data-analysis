@@ -2,13 +2,15 @@
 #define PROCESS_OUTPUT_RESULT_H
 
 
-#include <sstream>
 #include <string>
+#include <sstream>
 #include <iomanip>
 #include "Constants.h"
 #include "Conversions.h"
 #include "TypeDefinitions.h"
 #include "Classes/Date/Date.h"
+#include "Classes/AggregatedWeather/AggregatedWeather.h"
+
 
 using std::stringstream;
 using std::string;
@@ -26,7 +28,8 @@ using std::setprecision;
 
      Parameters:
         aggWeatherMap - a STL Map that stores the actual
-            aggregated weather data
+            aggregated weather data. This map must already
+            be populated beforehand
 
         aggWeatherQueryTree - a Binary Search Tree that is
             used to query whether a particular aggregated
@@ -55,7 +58,8 @@ void ProcessOption1Result(
 
      Parameters:
         aggWeatherMap - a STL Map that stores the actual
-            aggregated weather data
+            aggregated weather data. This map must already
+            be populated beforehand
 
         aggWeatherQueryTree - a Binary Search Tree that is
             used to query whether a particular aggregated
@@ -82,7 +86,8 @@ void ProcessOption2Result(
 
      Parameters:
         aggWeatherMap - a STL Map that stores the actual
-            aggregated weather data
+            aggregated weather data. This map must already
+            be populated beforehand
 
         aggWeatherQueryTree - a Binary Search Tree that is
             used to query whether a particular aggregated
@@ -109,7 +114,8 @@ void ProcessOption3Result(
 
      Parameters:
         aggWeatherMap - a STL Map that stores the actual
-            aggregated weather data
+            aggregated weather data. This map must already
+            be populated beforehand
 
         aggWeatherQueryTree - a Binary Search Tree that is
             used to query whether a particular aggregated

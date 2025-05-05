@@ -200,6 +200,7 @@ void ProcessOption2Result(
 
             recordExistsByMonth[currentMonth - 1]= true;
 
+
             if (!anyRecordExists)
             {
                 anyRecordExists = true;

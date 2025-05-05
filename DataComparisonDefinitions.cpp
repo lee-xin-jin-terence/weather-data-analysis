@@ -133,6 +133,74 @@ bool TimeIsLessThan(const Time& firstTime,
 }
 
 
+//----------------------------------------------------
+bool TimeIsEqualTo(const Time& firstTime,
+                   const Time& secondTime)
+{
+
+        /*
+            STEP 1:
+            Extract the hour, minute and second values
+            from both Time instances
+        */
+    int firstTimeHour = firstTime.GetHour();
+    int firstTimeMinute = firstTime.GetMinute();
+    int firstTimeSecond = firstTime.GetSecond();
+
+    int secondTimeHour = secondTime.GetHour();
+    int secondTimeMinute = secondTime.GetMinute();
+    int secondTimeSecond = secondTime.GetSecond();
+
+
+        /*
+            STEP 2:
+            Return a boolean value on whether firstTime
+            is equal to secondTime
+
+        */
+    return (  firstTimeHour == secondTimeHour &&
+              firstTimeMinute == secondTimeMinute &&
+              firstTimeSecond == secondTimeSecond);
+}
+
+
+//------------------------------------------------------
+bool TimeIsMoreThan(const Time& firstTime,
+                    const Time& secondTime)
+{
+
+        /*
+            STEP 1:
+            Extract the hour, minute and second values
+            from both Time instances
+        */
+    int firstTimeHour = firstTime.GetHour();
+    int firstTimeMinute = firstTime.GetMinute();
+    int firstTimeSecond = firstTime.GetSecond();
+
+    int secondTimeHour = secondTime.GetHour();
+    int secondTimeMinute = secondTime.GetMinute();
+    int secondTimeSecond = secondTime.GetSecond();
+
+
+        /*
+            STEP 2:
+            Return a boolean value on whether firstTime
+            is greater than secondTime
+
+        */
+    return ( (firstTimeHour > secondTimeHour)
+                            ||
+             (firstTimeHour == secondTimeHour &&
+              firstTimeMinute > secondTimeMinute)
+                            ||
+             (firstTimeHour == secondTimeHour &&
+              firstTimeMinute == secondTimeMinute &&
+              firstTimeSecond > secondTimeSecond));
+}
+
+
+
 //------------------------------------------------------
 bool StringIsLessThan(const string& firstString,
                       const string& secondString)
@@ -159,7 +227,7 @@ bool StringIsEqualTo(const string& firstString,
 
 //-----------------------------------------------------
 bool StringIsMoreThan(const string& firstString,
-                     const string& secondString)
+                      const string& secondString)
 {
         /*
             Returns true if firstString comes after secondString
@@ -206,7 +274,7 @@ bool UnaggregatedWeatherIsLessThan(
 
 
 //------------------------------------------------------
-bool DateIsLessThanFuncObj::operator()
+bool DateIsLessThanFunctor::operator()
                            (const Date& firstDate,
                             const Date& secondDate) const
 {

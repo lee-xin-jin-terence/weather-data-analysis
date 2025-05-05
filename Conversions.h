@@ -24,7 +24,7 @@ using std::string;
         returnedMonthString - This is the value that is
               to be returned by parameter. It contains the
               string value word-form of the month parameter
-              in [1]
+
 
      Return:
         returnedMonthString - the c++ string object reference

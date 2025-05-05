@@ -6,29 +6,51 @@ bool CreateAggWeatherMapAndQueryTree(
             DateBst& aggWeatherQueryTree)
 {
 
-    bool hasSufficientMemory;
+    bool hasNoError;
+
+        /*------------------------------------------------
+            STEP 1:
+            Aggregate the unaggregated weather data
+            and store the aggregated weather data in
+            the map aggWeatherMap
+        ------------------------------------------------*/
+    hasNoError = CreateAggregatedWeatherMap(unaggWeatherVec,
+                                            aggWeatherMap);
 
 
-    CreateAggregatedWeatherMap(unaggWeatherVec, aggWeatherMap);
+    if (hasNoError)
+    {
+            /*-------------------------------------------
+                STEP 2:
+                Populate the binary search tree
+                aggWeatherQueryTree
+            --------------------------------------------*/
+        hasNoError = CreateAggWeatherQueryTree(
+                                    aggWeatherMap,
+                                    aggWeatherQueryTree);
+    }
 
+        /*----------------------------------------------
+            STEP 3:
+            Return the outcome
 
-    hasSufficientMemory =
-                CreateAggWeatherQueryTree(aggWeatherMap,
-                                          aggWeatherQueryTree);
-
-
-    return hasSufficientMemory;
+            true - successful
+            false - unsuccessful
+        -----------------------------------------------*/
+    return hasNoError;
 }
 
 
 //--------------------------------------------------------
-void CreateAggregatedWeatherMap(
-            const UnaggregatedWeatherVector& unaggWeatherVec,
-            AggregatedWeatherMap& aggWeatherMap)
+bool CreateAggregatedWeatherMap(
+        const UnaggregatedWeatherVector& unaggWeatherVec,
+        AggregatedWeatherMap& aggWeatherMap)
 {
 
+    bool hasNoError;
 
-    int unaggWeatherVecSize = unaggWeatherVec.GetCurrentSize();
+    int unaggWeatherVecSize =
+                    unaggWeatherVec.GetCurrentSize();
 
     UnaggregatedWeather currentWeatherUnagg;
     AggregatedWeather currentWeatherAgg;
@@ -49,28 +71,33 @@ void CreateAggregatedWeatherMap(
 
     int numOfRecordsForCurrentMonth;
 
-        /*
+        /*-----------------------------------------------
             Aggregates Weather data from vector of type
-            UnaggregatedWeather to vector of type
-            AggregatedWeather. The weather data are aggregated
-            by calendar months.
+            UnaggregatedWeather to map that stores
+            AggregatedWeather. The weather data are
+            aggregated by calendar months.
 
             For example, all January records from year 1994
             will be aggregated into one single record and
-            stored in the vector of type AggregatedWeather as
-            a single element(entry)
-        */
+            stored in the map as a single element(entry).
+
+            The key of the map will be the Date, while the
+            value of the map will be the entire
+            AggregatedWeather record itself
+        -------------------------------------------------*/
+    hasNoError = true;
 
     for (int index=0;
-         index < unaggWeatherVecSize;
+         (index < unaggWeatherVecSize) && hasNoError;
          index++)
     {
-            /*
-                Step 1: Find out what the current date
+            /*--------------------------------------------
+                STEP 1:
+                Find out what the current date
                 (year and month) is for the current
                 unaggregated weather data
                 (UnaggregatedWeather) instance
-            */
+            ---------------------------------------------*/
         unaggWeatherVec.Get(index,currentWeatherUnagg);
 
         currentWeatherUnagg.GetDate(currentMonthDate);
@@ -81,11 +108,12 @@ void CreateAggregatedWeatherMap(
 
         if (index==0)
         {
-                /*
-                    Step 2: For the very first iteration of the
-                    loop, initialise the sum and
+                /*-----------------------------------------
+                    STEP 2:
+                    For the very first iteration of
+                    the loop, initialise the sum and
                     values of the various variables
-                */
+                -----------------------------------------*/
 
             currentMonthAgg = currentMonthUnagg;
             currentYearAgg = currentYearUnagg;
@@ -96,7 +124,7 @@ void CreateAggregatedWeatherMap(
                           currentWeatherUnagg.GetWindSpeed();
 
             sumOfCurrentMonthSolarRad =
-                        currentWeatherUnagg.GetSolarRadiation();
+                    currentWeatherUnagg.GetSolarRadiation();
 
             currentWeatherUnagg.GetDate(previousMonthDate);
 
@@ -107,34 +135,42 @@ void CreateAggregatedWeatherMap(
         else if ( currentMonthUnagg == currentMonthAgg
                     && currentYearUnagg == currentYearAgg)
         {
-                /*
-                    Step 3: For the remaining records of the
-                    current month (of the current year) onwards,
-                    the values of various weather records will be
-                    added up to the various weather data
-                    totals
-                */
+                /*------------------------------------------
+                    STEP 3:
+                    For the remaining records of the
+                    current month (of the current year)
+                    onwards, the values of various weather
+                    records will be added up to the various
+                    weather data totals
+                ------------------------------------------*/
             sumOfCurrentMonthTemp +=
-                        currentWeatherUnagg.GetTemperature();
+                    currentWeatherUnagg.GetTemperature();
 
             sumOfCurrentMonthWindSpeed +=
-                          currentWeatherUnagg.GetWindSpeed();
+                    currentWeatherUnagg.GetWindSpeed();
 
             sumOfCurrentMonthSolarRad +=
-                        currentWeatherUnagg.GetSolarRadiation();
+                    currentWeatherUnagg.GetSolarRadiation();
 
             numOfRecordsForCurrentMonth++;
 
         }
         else
         {
-            /*
-                Step 4: If this is the very last record
+            /*---------------------------------------------
+                STEP 4:
+                If this is the very last record
                 of the current month, calculate the various
-                values and append it to the vector of type
-                AggregatedWeather
-            */
-            //date is always set to first day of the month
+                values and insert it into the map
+                aggWeatherMap.
+
+                If any is any error in inserting it into
+                the map, hasNoError flag will be set to
+                false
+
+                date(as key of the map) is always set to
+                first day of the month
+            ---------------------------------------------*/
 
             previousMonthDate.SetDay(1);
 
@@ -146,26 +182,32 @@ void CreateAggregatedWeatherMap(
                                numOfRecordsForCurrentMonth);
 
             currentWeatherAgg.SetAvgWindSpeed(
-                             ConvertWindSpeedMSToKMH(
-                                sumOfCurrentMonthWindSpeed/
-                                numOfRecordsForCurrentMonth));
+                        ConvertWindSpeedMSToKMH(
+                            sumOfCurrentMonthWindSpeed/
+                            numOfRecordsForCurrentMonth));
 
             currentWeatherAgg.SetTotalSolarRadiation(
-                             Convert10MinRadEnergyToKWHM2(
-                                    sumOfCurrentMonthSolarRad));
+                        Convert10MinRadEnergyToKWHM2(
+                            sumOfCurrentMonthSolarRad));
+
+            try
+            {
+                aggWeatherMap[previousMonthDate] =
+                                        currentWeatherAgg;
+            }
+            catch(...)
+            {
+                hasNoError = false;
+            }
 
 
-            aggWeatherMap[previousMonthDate] =
-                                currentWeatherAgg;
 
-
-
-
-            /*
-                Step 5: Reset the total calculated values
+            /*-------------------------------------------
+                STEP 5:
+                Reset the total calculated values
                 for the next month of the various weather
                 data
-            */
+            ---------------------------------------------*/
 
             currentWeatherUnagg.GetDate(previousMonthDate);
 
@@ -191,64 +233,90 @@ void CreateAggregatedWeatherMap(
 
 
 
-        /*
-            Also Step 5: Append the very last remaining
-            aggregated weather data to the vector
-        */
+        /*-------------------------------------------------
+            Also STEP 5:
+            Insert the very last remaining
+            aggregated weather data to the map
+        -------------------------------------------------*/
 
+    if (hasNoError)
+    {
+        previousMonthDate.SetDay(1);
 
-    previousMonthDate.SetDay(1);
+        currentWeatherAgg.SetDate(previousMonthDate);
 
-    currentWeatherAgg.SetDate(previousMonthDate);
+        currentWeatherAgg.SetAvgTemperature(
+                             sumOfCurrentMonthTemp/
+                               numOfRecordsForCurrentMonth);
 
-    currentWeatherAgg.SetAvgTemperature(
-                         sumOfCurrentMonthTemp/
-                           numOfRecordsForCurrentMonth);
+        currentWeatherAgg.SetAvgWindSpeed(
+                     ConvertWindSpeedMSToKMH(
+                                sumOfCurrentMonthWindSpeed/
+                                numOfRecordsForCurrentMonth));
 
-    currentWeatherAgg.SetAvgWindSpeed(
-                 ConvertWindSpeedMSToKMH(
-                            sumOfCurrentMonthWindSpeed/
-                            numOfRecordsForCurrentMonth));
+        currentWeatherAgg.SetTotalSolarRadiation(
+                       Convert10MinRadEnergyToKWHM2(
+                              sumOfCurrentMonthSolarRad));
 
-    currentWeatherAgg.SetTotalSolarRadiation(
-                   Convert10MinRadEnergyToKWHM2(
-                          sumOfCurrentMonthSolarRad));
+        try
+        {
+            aggWeatherMap[previousMonthDate] =
+                                currentWeatherAgg;
+        }
+        catch(...)
+        {
+            hasNoError = false;
+        }
 
-    aggWeatherMap[previousMonthDate] =
-                            currentWeatherAgg;
+    }//end of if (hasNoError)
 
+        /*------------------------------------------------
+            STEP 6:
+            Return the outcome of aggregating data and
+            storing the aggregated weather in a map
 
-
+            true - successful
+            false - unsuccessful
+        -------------------------------------------------*/
+    return hasNoError;
 }
 
 
 //-----------------------------------------------------------
 bool CreateAggWeatherQueryTree(
             const AggregatedWeatherMap& aggWeatherMap,
-                        DateBst& aggWeatherQueryTree)
+            DateBst& aggWeatherQueryTree)
 {
 
+    AggregatedWeatherMapCItr itr;
     bool hasSufficientMemory = true;
 
-
-    AggregatedWeatherMapCItr itr;
-
-    Date currentDate;
-
-
+        /*-----------------------------------------------
+            STEP 1:
+            Stores all the keys of the map aggWeatherMap
+            in the binary search tree aggWeatherQueryTree
+        -------------------------------------------------*/
     for (itr = aggWeatherMap.begin() ;
          itr != aggWeatherMap.end() && hasSufficientMemory;
          itr++)
     {
-
-        currentDate = itr->first;
-
-
+            /*
+                Note that itr->first is a Date instance,
+                which is the key of the current key-value
+                pair
+            */
         hasSufficientMemory = aggWeatherQueryTree.Insert(
-                                            currentDate);
-
+                                            itr->first);
     }
 
 
+        /*------------------------------------------------
+            STEP 2:
+            Return the outcome of populating the binary
+            search tree
+
+            true - successful
+            false - unsuccessful
+        -------------------------------------------------*/
     return hasSufficientMemory;
 }

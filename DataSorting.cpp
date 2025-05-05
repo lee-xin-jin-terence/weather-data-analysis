@@ -69,9 +69,9 @@ bool MergeSortUnaggregatedWeatherVector(
                                     leftVecIndex, middleVecIndex,
                                     rightVecIndex);
 
-            }
+            }//end of inner-for
 
-        }
+        }//end of outer-for
 
             /*
                 STEP 4:
@@ -125,16 +125,17 @@ void MergeUnaggregatedWeatherVector(
     {
 
             /*
-                It is ok even if either i or j is out
-                of bounds of the vector, as it will be
+                It is ok even if either i or j is index-out-
+                -of-bounds of the vector, as it will be
                 handled by the underlying Vector template
-                class
+                class without any error
             */
         unaggWeatherVec.Get(i, currentWeatherLeft);
         unaggWeatherVec.Get(j, currentWeatherRight);
 
 
-        //if both sub-Vectors still have elements
+        //if both sub-Vectors still have elements yet to
+        // be parsed
         if (i < middleVecIndex && j < rightVecIndex)
         {
 
@@ -152,13 +153,13 @@ void MergeUnaggregatedWeatherVector(
         }
         else if (i == middleVecIndex)
         {
-            //if left sub-Vector is empty
+            //if left sub-Vector is fully parsed
             tempArray[k] = currentWeatherRight;
             j++;
         }
         else if (j == rightVecIndex)
         {
-            //if right sub-Vector is empty
+            //if right sub-Vector is fully parsed
             tempArray[k] = currentWeatherLeft;
             i++;
         }
@@ -190,7 +191,7 @@ int Min(int firstNum, int secondNum)
         /*
             Returns the number with the lower value
         */
-    if (firstNum <= secondNum)
+    if (firstNum < secondNum)
     {
         return firstNum;
     }

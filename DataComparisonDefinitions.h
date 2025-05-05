@@ -2,7 +2,6 @@
 #define DATA_COMPARISON_DEFINITIONS_H
 
 
-
 #include <string>
 #include "Classes/Date/Date.h"
 #include "Classes/Time/Time.h"
@@ -92,6 +91,45 @@ bool DateIsMoreThan(const Date& firstDate,
              and false if otherwise
     */
 bool TimeIsLessThan(const Time& firstTime,
+                    const Time& secondTime);
+
+    /*
+     Brief:
+        Compares two Time instances and returns a boolean value
+        on whether the first Time instance is equal to the
+        second Time instance
+
+     Parameters:
+        firstTime - a Time instance to be compared to secondTime
+
+        secondTime - a Time instance to be compared to firstTime
+
+     Return:
+        bool - true if firstTime is equal to secondTime,
+             and false if otherwise
+    */
+bool TimeIsEqualTo(const Time& firstTime,
+                   const Time& secondTime);
+
+
+    /*
+     Brief:
+        Compares two Time instances and returns a boolean value
+        on whether the first Time instance is greater than the
+        second Time instance
+
+     Parameters:
+        firstTime - a Time instance to be compared to
+            secondTime
+
+        secondTime - a Time instance to be compared to
+            firstTime
+
+     Return:
+        bool - true if firstTime is greater than secondTime,
+             and false if otherwise
+    */
+bool TimeIsMoreThan(const Time& firstTime,
                     const Time& secondTime);
 
 
@@ -189,7 +227,7 @@ bool UnaggregatedWeatherIsLessThan(
         Such structs are commonly
         used by the Standard Template Library(STL)
     */
-struct DateIsLessThanFuncObj
+struct DateIsLessThanFunctor
 {
         /*
          Brief:

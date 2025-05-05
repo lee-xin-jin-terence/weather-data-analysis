@@ -8,6 +8,7 @@
 #include "Classes/Date/Date.h"
 #include "Classes/Time/Time.h"
 #include "Classes/Vector/Vector.h"
+#include "Classes/TwoDimensionalBst/TwoDimensionalBst.h"
 #include "Classes/UnaggregatedWeather/UnaggregatedWeather.h"
 #include "Classes/AggregatedWeather/AggregatedWeather.h"
 #include "DataComparisonDefinitions.h"
@@ -51,13 +52,6 @@ typedef Vector<string> StringVector;
 typedef Vector<UnaggregatedWeather> UnaggregatedWeatherVector;
 
 
-    /*
-     Brief:
-        A vector that is used to store instances of class
-        AggregatedWeather
-    */
-typedef Vector<AggregatedWeather> AggregatedWeatherVector;
-
 
     /*
      Brief:
@@ -68,17 +62,25 @@ typedef Bst<string> StringBst;
 
     /*
      Brief:
-        A c++ Date Binary Search Tree
+        A Date Binary Search Tree
     */
 typedef Bst<Date> DateBst;
 
 
     /*
      Brief:
+        A two dimensional binary search tree, used for
+        searching of a composite Date-Time key
+    */
+typedef TwoDimensionalBst<Date,Time, DateIsLessThanFunctor>
+                            DateTime2DBst;
+
+    /*
+     Brief:
         A Standard Template Library map that maps
         AggregatedWeather instances to its Date
     */
-typedef map<Date, AggregatedWeather, DateIsLessThanFuncObj>
+typedef map<Date, AggregatedWeather, DateIsLessThanFunctor>
                         AggregatedWeatherMap;
 
 

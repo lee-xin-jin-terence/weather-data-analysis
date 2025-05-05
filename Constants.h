@@ -25,7 +25,6 @@ const char DATA_INDEX_FILE_NAME[] = "data/met_index.txt";
         If the number here is far less than the actual number
         of files to read, it may lead to reduced program
         efficiency
-
     */
 const int EST_NUM_OF_FILES_TO_READ = 10;
 

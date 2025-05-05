@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "FileIO.h"
+#include "TypeDefinitions.h"
 #include "ProcessOutputResult.h"
 
 
@@ -21,7 +22,8 @@ using std::string;
 
      Parameters:
         aggWeatherMap - a STL Map that stores the actual
-            aggregated weather data
+            aggregated weather data. This map must already
+            be populated beforehand
 
         aggWeatherQueryTree - a Binary Search Tree that is
             used to query whether a particular aggregated
@@ -33,6 +35,7 @@ using std::string;
     */
 void StartMenuLoop(const AggregatedWeatherMap& aggWeatherMap,
                    const DateBst& aggWeatherQueryTree);
+
 
     /*
      Brief:

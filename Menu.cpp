@@ -23,6 +23,7 @@ void StartMenuLoop(const AggregatedWeatherMap& aggWeatherMap,
     do
     {
         DisplayMenuText();
+
         menuChoiceSelected =
                 PromptAndGetMenuOption(NUM_OF_MENU_OPTIONS);
 
@@ -324,9 +325,11 @@ void DisplayFileWriteOutcomeMessage(bool writeToFileOutcome)
         cout << "Failed to write to file "
              << OUTPUT_FILE_NAME << '.' << '\n'
              << "It may be due to the file already existing "
-             << "as a read-only file in the destination folder"
-             << '\n' << " or that the file is currently open"
-             << " in another program." << '\n';
+             << "as a read-only \n"
+             << "file in the destination folder"
+             << " or that the file is \n"
+             << "currently open in another program."
+             << '\n';
 
     }
 

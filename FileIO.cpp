@@ -8,6 +8,8 @@ bool ReadInputFile(const char inputFileName[],
 {
     returnedFileDataString = "";
 
+    char testChar;
+
     bool readFileOutcome = true;
 
     string currentLineData;
@@ -34,25 +36,34 @@ bool ReadInputFile(const char inputFileName[],
             -----------------------------------------
             Pre-requisite: The file must first exist
 
-            If the file is an empty file, then the flag
-            readFileOutcome is set to false
+            If the file is an empty file (zero characters),
+            or that it has only whitespace characters,
+            then the flag readFileOutcome is set to false
         */
 
     if (readFileOutcome)
     {
-        //(attempts to) read the first line
-        currentLineData = "";
-        getline(inputFile, currentLineData, '\n');
+        // attempts to read the first non-space character
+        testChar = ' ';
+        inputFile >> testChar;
 
 
-            /*
-                If the file is an empty file, the
-                flag readFileOutcome will be set to false
-            */
-        if (!inputFile.good() && currentLineData == "")
+        if ( testChar == ' ' )
         {
+                //means either the file is empty (zero
+                // characters) or the
+                //file consists of only empty strings
+                // (meaning the file is not empty but
+                // consists of only white-space characters)
             readFileOutcome = false;
         }
+        else
+        {
+                //return the character extracted back
+                //into the stream
+            inputFile.putback(testChar);
+        }
+
     }
 
 
@@ -68,6 +79,9 @@ bool ReadInputFile(const char inputFileName[],
 
     if (readFileOutcome)
     {
+        currentLineData = "";
+        getline(inputFile, currentLineData, '\n');
+
             /*
                 Note that the second condition in the
                 while loop is there for the final line

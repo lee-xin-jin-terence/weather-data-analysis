@@ -76,7 +76,6 @@ float ConvertWindSpeedMSToKMH(float windSpeedMS)
 
 
 //-------------------------------------------------------------
-
 float Convert10MinRadEnergyToKWHM2 (float radiationWM2)
 {
         //Return the resulting amount of radiation

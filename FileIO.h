@@ -1,8 +1,9 @@
 #ifndef FILE_IO_H
 #define FILE_IO_H
 
-#include <fstream>
 #include <string>
+#include <fstream>
+
 #include "Constants.h"
 
 using std::string;
@@ -23,7 +24,9 @@ using std::ofstream;
 
      Return:
         float - boolean true if the file exists and is not
-            empty, and false if otherwise.
+            empty(has at least one character) and does not
+             contain only whitespace characters (empty strings) ,
+             and false if otherwise.
 
         returnedFileDataString -  a c++ string object reference
             which contains the data read from inputFileName. If
