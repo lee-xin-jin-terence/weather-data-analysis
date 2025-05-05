@@ -21,8 +21,8 @@ Terence Lee
 
 ### 📋 Sample Output
 
-Date: 11/1/2019
-High solar radiation for the day: 1046 W/m²
+Date: 11/1/2019<br/>
+High solar radiation for the day: 1046 W/m²<br/>
 Time: 10:40 
 
 ## High Level UML Design
