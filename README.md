@@ -17,13 +17,23 @@ Terence Lee
 
 ## ⭐ Bonus Feature
 
-- Given a date (e.g., `11/1/2019`), the program identifies and displays all times that recorded the **highest solar radiation** for that day.
+- Given a year (e.g. 2012), the program identifies and displays the **total recorded solar radiation** for every month of the year.
 
 ### 📋 Sample Output
 
-Date: 11/1/2019<br/>
-High solar radiation for the day: 1046 W/m²<br/>
-Time: 10:40 
+2016
+January: 223.4 kWh/m^2
+February: 225.6 kWh/m^2
+March: 181.6 kWh/m^2
+April: 109.5 kWh/m^2
+May: 97.0 kWh/m^2
+June: 77.8 kWh/m^2
+July: 87.8 kWh/m^2
+August: 107.6 kWh/m^2
+September: 147.0 kWh/m^2
+October: 201.4 kWh/m^2
+November: 249.3 kWh/m^2
+December: 262.4 kWh/m^2
 
 
 ## High Level UML Design
