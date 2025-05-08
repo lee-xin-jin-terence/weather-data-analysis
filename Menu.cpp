@@ -104,6 +104,8 @@ void StartMenuLoop(const AggregatedWeatherMap& aggWeatherMap,
         //Displays the menu text only, and does nothing else
 void DisplayMenuText()
 {
+    cout << "Menu" << '\n';
+    cout << "----" << '\n';
     cout << "1. The average wind speed and average ambient "
          << "air temperature for a specified month" << '\n'
          << " and year.(print on screen only)" << "\n\n";
