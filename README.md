@@ -15,7 +15,7 @@ Terence Lee
 - Extracts sensor values like solar radiation and wind speed  
 - Menu-driven interface for interacting with data  
 
-## ⭐ Bonus Feature
+## ⭐ Sample Use Case 
 
 - Given a year (e.g. 2016), the program identifies and displays the **total recorded solar radiation** for every month of the year.
 
