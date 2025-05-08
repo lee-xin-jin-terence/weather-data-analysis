@@ -26,10 +26,14 @@ High solar radiation for the day: 1046 W/m²<br/>
 Time: 10:40 
 
 ## Screenshots
-<img width="589" alt="image" src="https://github.com/user-attachments/assets/64962e7b-b3fc-48c2-bd68-fb2de3c825b0" /><br/>
-<img width="589" alt="image" src="https://github.com/user-attachments/assets/37a53831-83b0-4450-8143-0df91589845f" /><br/>
-<img width="589" alt="image" src="https://github.com/user-attachments/assets/e81b113e-a82c-4cce-951f-a406b465023e" /><br/>
-<img width="589" alt="image" src="https://github.com/user-attachments/assets/a7149cf9-6715-4e5a-81ba-c40ec612e540" /><br/>
+<img width="589" alt="image" src="https://github.com/user-attachments/assets/64962e7b-b3fc-48c2-bd68-fb2de3c825b0" /><br/><hr style="border: none; height: 1px; background-color: white;">
+
+<img width="589" alt="image" src="https://github.com/user-attachments/assets/37a53831-83b0-4450-8143-0df91589845f" /><br/><hr style="border: none; height: 1px; background-color: white;">
+
+<img width="589" alt="image" src="https://github.com/user-attachments/assets/e81b113e-a82c-4cce-951f-a406b465023e" /><br/><hr style="border: none; height: 1px; background-color: white;">
+
+<img width="589" alt="image" src="https://github.com/user-attachments/assets/a7149cf9-6715-4e5a-81ba-c40ec612e540" /><br/><hr style="border: none; height: 1px; background-color: white;">
+
 <img width="283" alt="image" src="https://github.com/user-attachments/assets/9798051c-4437-4ad8-afde-aeda9c92558a" />
 
 
