@@ -21,6 +21,7 @@ Terence Lee
 
 ### 📋 Sample Output
 
+```
 2016
 January: 223.4 kWh/m^2
 February: 225.6 kWh/m^2
@@ -34,6 +35,7 @@ September: 147.0 kWh/m^2
 October: 201.4 kWh/m^2
 November: 249.3 kWh/m^2
 December: 262.4 kWh/m^2
+```
 
 
 ## High Level UML Design
