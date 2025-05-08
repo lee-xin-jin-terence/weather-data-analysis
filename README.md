@@ -8,12 +8,18 @@ This C++ project processes and analyzes historical weather data (e.g., solar rad
 ## Author
 Terence Lee
 
+
 ## 🔍 Key Features
 
 - Object-oriented design for modular, maintainable code  
 - Reads and processes multiple weather data files  
 - Extracts sensor values like solar radiation and wind speed  
 - Menu-driven interface for interacting with data  
+
+## Project Requirements
+- Implement a binary search tree (BST) using C++ templates and integrate it into the program.
+
+  
 
 ## ⭐ Sample Use Case 
 
