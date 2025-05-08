@@ -17,7 +17,7 @@ Terence Lee
 
 ## ⭐ Bonus Feature
 
-- Given a year (e.g. 2012), the program identifies and displays the **total recorded solar radiation** for every month of the year.
+- Given a year (e.g. 2016), the program identifies and displays the **total recorded solar radiation** for every month of the year.
 
 ### 📋 Sample Output
 
