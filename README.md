@@ -1,5 +1,5 @@
 > 🎓 Academic Coursework  
-> Created as part of the Computer Science curriculum at Murdoch University.
+> Created as part of the Computer Science (data structures) curriculum at Murdoch University.
 
 # 🌤 Weather Data Analysis in C++
 
