@@ -39,7 +39,6 @@ Time: 10:40
 [Program Tests Screenshots.pdf](https://github.com/user-attachments/files/20031283/Program.Tests.Screenshots.pdf)
 
 ## Screenshots
-<img width="589" alt="image" src="https://github.com/user-attachments/assets/64962e7b-b3fc-48c2-bd68-fb2de3c825b0" /><br/><hr style="border: none; height: 1px; background-color: white;">
 
 <img width="589" alt="image" src="https://github.com/user-attachments/assets/37a53831-83b0-4450-8143-0df91589845f" /><br/><hr style="border: none; height: 1px; background-color: white;">
 
